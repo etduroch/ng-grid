@@ -949,13 +949,15 @@ var ngEventProvider = function (grid, $scope, domUtilityService, $timeout) {
             }
 
             grid.$topPanel.on('$destroy', function() {
-                grid.$topPanel.off('mousedown');
+		if (grid.$topPanel) {
+	                grid.$topPanel.off('mousedown');
 
-                if (grid.config.enableColumnReordering) {
-                    grid.$topPanel.off('drop');
-                }
+	                if (grid.config.enableColumnReordering) {
+	                    grid.$topPanel.off('drop');
+	                }
 
-                grid.$topPanel = null;
+	                grid.$topPanel = null;
+		}
             });
         }
 
